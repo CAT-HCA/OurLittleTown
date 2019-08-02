@@ -15,6 +15,7 @@ window.onload = function ()
     let roadsideField = document.getElementById("selectRoadside");
     let over25Field = document.getElementById("notUnder25");
     let carTypeField = document.getElementById("inputCarType");
+    let hiddendiv = document.getElementById("hiddendiv");
 
     let calcBtn = document.getElementById("calcBtn");
 
@@ -34,23 +35,20 @@ window.onload = function ()
         let ageCost = getAgeCost(carCost, over25Field.checked);
         let returnDate = getReturnDate(pickupDate, numDays);
         let totalCost = carCost + optionsCost + ageCost;
+
+        hiddendiv.style.display = 'block';
         
 
         //Display results
-        carCost = "Car Rental: $" + carCost.toFixed(2);
-        document.getElementById("carRentalCostOutput").innerHTML = carCost;
+        document.getElementById("carRentalCostOutput").innerHTML = carCost.toFixed(2);
 
-        optionsCost = "Options: $" + optionsCost.toFixed(2);
-        document.getElementById("optionCostOutput").innerHTML = optionsCost;
+        document.getElementById("optionCostOutput").innerHTML = optionsCost.toFixed(2);
 
-        ageCost = "Under 25 Surcharge: $" + ageCost.toFixed(2);
-        document.getElementById("under25CostOutput").innerHTML = ageCost;
+        document.getElementById("under25CostOutput").innerHTML = ageCost.toFixed(2);
 
-        returnDate = "Return Date: " + returnDate;
         document.getElementById("returnDateOutput").innerHTML = returnDate;
 
-        totalCost = "Total Cost: $" + totalCost.toFixed(2);
-        document.getElementById("totalCostOutput").innerHTML = totalCost;
+        document.getElementById("totalCostOutput").innerHTML = totalCost.toFixed(2);
 
     }
 }
