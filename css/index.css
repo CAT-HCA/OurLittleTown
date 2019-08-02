@@ -1,0 +1,12 @@
+
+/*Index page jumbotron*/
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url(../images/jumbotronimg.jpg);
+    background-position: center; 
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-shadow: 2px 2px 2px black;
+}
+
+
