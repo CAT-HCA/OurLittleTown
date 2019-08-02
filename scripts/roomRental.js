@@ -1,4 +1,4 @@
-// Description: This script will calculate the cost of a car rental
+// Description: This script will calculate the cost of a room rental
 //based on selected options on UI
 //Author: Corinne Trudeau
 "use strict";
@@ -25,8 +25,8 @@ window.onload = function ()
     let aaaDiscField = document.getElementById("aaaDisc");
     let seniorDiscField = document.getElementById("seniorDisc");
     let militaryDiscField = document.getElementById("militaryDisc");
-    let calcBtn = document.getElementById("calcBtn");
     let hiddendiv = document.getElementById("hiddendiv");
+    let calcBtn = document.getElementById("calcBtn");
 
     /*
     *This is the button click event handler
@@ -40,7 +40,6 @@ window.onload = function ()
         let numChild = Number(childCountField.value);
         let totalGuests = numChild + numAdults;
         let taxPercent = .12;
-
 
         hiddendiv.style.display = 'block';
 
@@ -62,28 +61,18 @@ window.onload = function ()
       
 
         //Display results
-        
-
         document.getElementById("checkinDateOutput").innerHTML = checkInDateCalc;
-
-
         document.getElementById("checkoutDateOutput").innerHTML = checkOutDate;
-
-
         document.getElementById("roomAndBfastCostOutput").innerHTML = roomCost.toFixed(2);
-
         if (discountAmount > 0){
-            discountAmount = "Discount Savings: $-" + discountAmount.toFixed(2);
-            document.getElementById("discountSavingsOutput").innerHTML = discountAmount;
+            document.getElementById("discountSavingsOutput").innerHTML = discountAmount.toFixed(2);
         }
         else
         {
             discountAmount = "";
             document.getElementById("discountSavingsOutput").innerHTML = discountAmount;
         }
-
         document.getElementById("taxOutput").innerHTML = taxAmount.toFixed(2);
-
         document.getElementById("totalCostOutput").innerHTML = totalCost.toFixed(2);
 
     }
@@ -91,10 +80,11 @@ window.onload = function ()
 
 
 /*
-* This function will determine the cost of just the car rental
-* @param numDays (number) - number of days of rental
-* @param carTypeField (string) - the option selected by the user on the drop down box
-* @return carCost (number) - returns the car cost
+* This function will determine if your selected number of guests is greater
+* than the max occupancy of selected room type
+* @param roomType (string) - roomType selected by user on drop down
+* @param numGuests (number) - number of guests
+* @return result (boolean) - true or false that the guests will fit in the room
 */
 function canRoomHoldCustomer(roomType, numGuests)
 {
@@ -114,14 +104,12 @@ function canRoomHoldCustomer(roomType, numGuests)
 }
 
 /*
-* This function will determine the cost of additional options
-* by determining which options were selected and multiplying
-* by number of days
-* @param numDays (number) - number of days of rental
-* @param tollTag (boolean) - value of tollTag checkbox
-* @param gps (boolean) - value of gps checkbox
-* @param roadside (boolean) - value of roadside checkbox
-* @return optionsCost (number) - returns the options cost
+* This function will determine the cost of just your room rental
+* @param roomType (string) - roomType selected by user on drop down
+* @param checkinDate (date) - date of checkin (to be used if calculating
+* off-season/on-season rates)
+* @param numNights (number) - number of nights of stay
+* @return roomCost (number) - cost of room
 */
 function getRoomCost(roomType, checkinDate, numNights)
 {
@@ -139,12 +127,13 @@ function getRoomCost(roomType, checkinDate, numNights)
 }
 
 /*
-* This function will determine if there is an additional
-* surcharge for age under 25 and applies the surcharge of
-* 30% to the carCost (NOT total cost)
-* @param carCost (number) - subtotal of cost of car
-* @param over25 (boolean) - value of age from radio buttons (under or over 25)
-* @return ageCost (number) - returns the surcharge amount if any
+* This function will determine the cost of breakfast (if requested)
+* @param numNights (number) - number of nights of stay
+* @param numAdults (number) - number of adult guests
+* @param numKids (number) - number of child guests
+* @param breakfastTrue (boolean) - true or false value of breakfast selection
+* @param seniorDiscTrue (boolean) - true or false value of senior discount selection
+* @return breakfastCost (number) - cost of breakfast
 */
 function getBreakfastCost(numNights, numAdults, numKids, breakfastTrue, seniorDiscTrue)
 {
@@ -174,9 +163,11 @@ function getBreakfastCost(numNights, numAdults, numKids, breakfastTrue, seniorDi
 
 /*
 * This function will determine the date the vehicle needs to be returned by 
-* @param pickupDate (date) - selected pickup date from UI
-* @param numDays (number) - number of days of rental
-* @return returnDate (date) - date vehicle needs to be returned
+* @param roomCostBeforeDiscount (number) - room cost before discount
+* @param aaaDiscTrue (boolean) - true or false value of AAA discount selection
+* @param seniorDiscTrue (boolean) - true or false value of Senior discount selection
+* @param militaryDiscTrue (boolean) - true or false value of military discount selection
+* @return returnDate (discount) - discount amount, if any
 */
 function getDiscount(roomCostBeforeDiscount, aaaDiscTrue, seniorDiscTrue, militaryDiscTrue)
 {
@@ -199,10 +190,7 @@ function getDiscount(roomCostBeforeDiscount, aaaDiscTrue, seniorDiscTrue, milita
 }
 
 /*
-* This function will determine the date the vehicle needs to be returned by 
-* @param pickupDate (date) - selected pickup date from UI
-* @param numDays (number) - number of days of rental
-* @return returnDate (date) - date vehicle needs to be returned
+* These function will determine the check in and check out dates
 */
 function getCheckOutDate(checkInDate, numNights)
 {

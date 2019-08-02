@@ -13,10 +13,6 @@
     <!-- linking custom site CSS -->
     <link rel="stylesheet" type="text/css" href="css/site.css">
 
-    <!-- linking custom page CSS -->
-    <link rel="stylesheet" type="text/css" href="css/roomRentals.css">
-
-
 
     <!--Font Awesome link-->
     <script src="https://kit.fontawesome.com/d9e1614114.js"></script>
@@ -45,8 +41,8 @@
 
     <!-- START MAIN -->
     <main class="container row ml-2">
-        <form class="col-8 mx-auto">
-            <div class="container ml-3">
+        <form class="col-md-8 mx-auto">
+            <div class="container">
                 <h1 class="display-4 text-info row">Room Rentals</h1>
                 <p class="row">Each room includes wi-fi and access to our state of the art fitness center.</p>
             </div>
@@ -54,12 +50,12 @@
                 <legend class="font-weight-light text-white w-50 border border-info rounded">Details of your stay
                 </legend>
                 <div class="form-group row">
-                    <div class="col-8">
+                    <div class="col-md-8">
                         <label for="inputCheckinDate">Check-in date: </label>
                         <!--Validation error for input type = "date" due to unavailable in some browsers-->
                         <input type="date" class="form-control" id="inputCheckinDate" name="inputCheckinDate" required>
                     </div>
-                    <div class="col-4">
+                    <div class="col-md-4">
                         <label for="inputNumNights">Number of nights: </label>
                         <input type="number" min="1" max="28" class="form-control" id="inputNumNights"
                             name="inputNumNights" required>
@@ -70,7 +66,7 @@
                 <legend class="font-weight-light text-white w-50 border border-info rounded">Room Selection
                 </legend>
                 <div class="row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-md-6">
                         <label for="inputAdultCount">Number of Adults: </label>
                         <select class="form-control" id="inputAdultCount" name="inputAdultCount" required>
                             <option class="font-italic" value="">Choose one...</option>
@@ -80,7 +76,7 @@
                             <option value="4">4</option>
                         </select>
                     </div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-md-6">
                         <label for="inputChildCount">Number of Children (12 and Under):</label>
                         <select class="form-control" id="inputChildCount" name="inputChildCount">
                             <option class="font-italic" value="">Choose one...</option>
@@ -92,7 +88,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-12">
+                    <div class="form-group col-md-12">
                         <label for="inputRoomType">Room Type: </label>
                         <select class="form-control" id="inputRoomType" name="inputRoomType" required>
                             <option class="font-italic" value="">Choose one...</option>
@@ -103,7 +99,7 @@
                         </select>
 
                     </div>
-
+                </div>
             </fieldset>
             <fieldset class="border border-info p-3 rounded mt-3">
                 <legend class="font-weight-light text-white w-50 border border-info rounded">Breakfast
@@ -150,7 +146,7 @@
                 <input class="btn btn-info my-3" type="reset" id="resetBtn" name="resetBtn" value="Reset">
             </div>
         </form>
-        <fieldset id="hiddendiv" class="border border-info p-3 rounded col-4">
+        <fieldset id="hiddendiv" class="border border-info p-3 rounded col-md-4">
             <legend class="font-weight-light text-white w-75 border border-info rounded">Cost Breakdown</legend>
             <div>
                 <p class="text-info font-weight-bold">Check-in Date: <span class="text-dark font-weight-normal"
@@ -167,7 +163,6 @@
                         class="text-dark font-weight-normal" id="totalCostOutput"></span></p>
             </div>
         </fieldset>
-    </div>
     </main>
 
     <!--FOOTER-->
