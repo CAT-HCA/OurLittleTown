@@ -3,6 +3,12 @@
     text-decoration: none;
 }
 
+
+.nav-item.inactive:hover {
+  text-decoration:underline;
+}
+
+
 /* formatting for footer*/
 html {
     position: relative;
@@ -33,4 +39,10 @@ html {
 legend {
 text-align:center;
 background-color: #17a2b8;
+}
+
+#hiddendiv {
+  display: none;
+  height: 350px;
+  margin-top: 120px;
 }

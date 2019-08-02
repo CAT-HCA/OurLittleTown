@@ -26,6 +26,7 @@ window.onload = function ()
     let seniorDiscField = document.getElementById("seniorDisc");
     let militaryDiscField = document.getElementById("militaryDisc");
     let calcBtn = document.getElementById("calcBtn");
+    let hiddendiv = document.getElementById("hiddendiv");
 
     /*
     *This is the button click event handler
@@ -40,6 +41,8 @@ window.onload = function ()
         let totalGuests = numChild + numAdults;
         let taxPercent = .12;
 
+
+        hiddendiv.style.display = 'block';
 
         //Process Data and call other functions
         let customerCount = canRoomHoldCustomer(roomTypeField.options[roomTypeField.selectedIndex].value, totalGuests);
@@ -60,14 +63,14 @@ window.onload = function ()
 
         //Display results
         
-        checkInDateCalc = "Check-in Date: " + checkInDateCalc;
+
         document.getElementById("checkinDateOutput").innerHTML = checkInDateCalc;
 
-        checkOutDate = "Check-out Date: " + checkOutDate;
+
         document.getElementById("checkoutDateOutput").innerHTML = checkOutDate;
 
-        roomCost = "Room Cost: $" + roomCost.toFixed(2);
-        document.getElementById("roomAndBfastCostOutput").innerHTML = roomCost;
+
+        document.getElementById("roomAndBfastCostOutput").innerHTML = roomCost.toFixed(2);
 
         if (discountAmount > 0){
             discountAmount = "Discount Savings: $-" + discountAmount.toFixed(2);
@@ -79,12 +82,9 @@ window.onload = function ()
             document.getElementById("discountSavingsOutput").innerHTML = discountAmount;
         }
 
+        document.getElementById("taxOutput").innerHTML = taxAmount.toFixed(2);
 
-        taxAmount = "Taxes: $" + taxAmount.toFixed(2);
-        document.getElementById("taxOutput").innerHTML = taxAmount;
-
-        totalCost = "Total Cost: $" + totalCost.toFixed(2);
-        document.getElementById("totalCostOutput").innerHTML = totalCost;
+        document.getElementById("totalCostOutput").innerHTML = totalCost.toFixed(2);
 
     }
 }
