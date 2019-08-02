@@ -49,7 +49,7 @@
     <main class="container row ml-2">
         <div class="container ml-3">
             <h1 class="display-4 text-info row">Room Rentals</h1>
-            <p class="row">Each room includes wi-fi and access to fitness center.</p>
+            <p class="row">Each room includes wi-fi and access to our state of the art fitness center.</p>
         </div>
         <form class="container col-8 float-left clear-right">
             <fieldset class="border border-info p-3 rounded">
@@ -59,12 +59,12 @@
                     <div class="col-8">
                         <label for="inputCheckinDate">Check-in date: </label>
                         <!--Validation error for input type = "date" due to unavailable in some browsers-->
-                        <input type="date" class="form-control" id="inputCheckinDate" name="inputCheckinDate">
+                        <input type="date" class="form-control" id="inputCheckinDate" name="inputCheckinDate" required>
                     </div>
                     <div class="col-4">
-                        <label for="inputNumDays">Number of nights: </label>
-                        <input type="number" min="1" max="28" class="form-control" id="inputNumDays"
-                            name="inputNumDays">
+                        <label for="inputNumNights">Number of nights: </label>
+                        <input type="number" min="1" max="28" class="form-control" id="inputNumNights"
+                            name="inputNumNights" required>
                     </div>
                 </div>
             </fieldset>
@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="form-group col-6">
                         <label for="inputAdultCount">Number of Adults: </label>
-                        <select class="form-control" id="inputAdultCount" name="inputAdultCount">
+                        <select class="form-control" id="inputAdultCount" name="inputAdultCount" required>
                             <option class="font-italic" value=" ">Choose one...</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -96,11 +96,11 @@
 
                     <div class="form-group col-12">
                         <label for="inputRoomType">Room Type: </label>
-                        <select class="form-control" id="inputRoomType" name="inputRoomType">
+                        <select class="form-control" id="inputRoomType" name="inputRoomType" required>
                             <option class="font-italic" value=" ">Choose one...</option>
                             <option value="queen">Queen (sleeps 5) - $150/night</option>
-                            <option value="King">King (sleeps 2) - $150/night</option>
-                            <option value="KingSuite">King Suite (sleeps 4) - $190/night</option>
+                            <option value="king">King (sleeps 2) - $150/night</option>
+                            <option value="kingSuite">King Suite (sleeps 4) - $190/night</option>
                             <option value="twoBedSuite">2-Bedroom Suite (sleeps 6) - $210/night</option>
                         </select>
 
@@ -127,24 +127,24 @@
             <fieldset class="border border-info p-3 rounded mt-3">
                 <legend class="font-weight-light text-white w-50 border border-info rounded">Discounts
                 </legend>
-                <div class="form-check form-check">
+                <div class="form-check">
+                        <input class="form-check-input" type="radio" name="inputDiscounts" id="noDiscs" value="noDiscs"
+                            checked>
+                        <label class="form-check-label" for="noDiscs">None</label>
+                    </div>
+                <div class="form-check">
                     <input class="form-check-input" type="radio" name="inputDiscounts" id="aaaDisc" value="aaaDisc">
                     <label class="form-check-label" for="aaaDisc">AAA Discount - 10% off</label>
                 </div>
-                <div class="form-check form-check">
+                <div class="form-check">
                     <input class="form-check-input" type="radio" name="inputDiscounts" id="seniorDisc"
                         value="seniorDisc">
                     <label class="form-check-label" for="seniorDisc">Senior Discount - 10% off</label>
                 </div>
-                <div class="form-check form-check">
+                <div class="form-check">
                     <input class="form-check-input" type="radio" name="inputDiscounts" id="militaryDisc"
                         value="militaryDisc">
                     <label class="form-check-label" for="militaryDisc">Military Discount - 20% off</label>
-                </div>
-                <div class="form-check form-check">
-                    <input class="form-check-input" type="radio" name="inputDiscounts" id="noDiscs" value="noDiscs"
-                        checked>
-                    <label class="form-check-label" for="noDiscs">None</label>
                 </div>
             </fieldset>
             <div>
@@ -188,6 +188,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="scripts/roomRental.js"></script>
 </body>
 
 </html>
