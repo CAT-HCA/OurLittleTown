@@ -6,13 +6,6 @@
 /*
 *This is the window.onload event handler
 */
-let roomPrices = 
-[
-    {name:"queen", guests: 5, lowSeasonRate: 150, highSeasonRate: 250},
-    {name:"king", guests: 2, lowSeasonRate: 150, highSeasonRate: 250},
-    {name:"kingSuite", guests: 4, lowSeasonRate: 190, highSeasonRate: 310},
-    {name:"twoBedSuite", guests: 6, lowSeasonRate: 210, highSeasonRate: 350}
-]
 
 window.onload = function ()
 {
@@ -41,19 +34,25 @@ window.onload = function ()
         let numChild = Number(childCountField.value);
         let totalGuests = numChild + numAdults;
         let taxPercent = .12;
+        let roomType = roomTypeField.options[roomTypeField.selectedIndex].value;
+        let roomInfo = getRoomInfo(roomType);
 
         //Process Data and call other functions
-        let customerCount = canRoomHoldCustomer(roomTypeField.options[roomTypeField.selectedIndex].value, totalGuests);
+
+
+
+        let customerCount = canRoomHoldCustomer(roomInfo.lowSeasonRate, totalGuests);
         //will alert if the number of guests exceeds the max occupancy of room type
         if (customerCount == false)
         {
             alert("Your guest count is too big for your selected room.");
             return;
         }
+
         let checkInDateCalc = getCheckInDate(checkInDate);
         let checkOutDate = getCheckOutDate(checkInDate, numNights);
         let breakfastCost = getBreakfastCost(numNights, numAdults, numChild, breakfastField.checked, seniorDiscField.checked);
-        let roomCost = getRoomCost(roomTypeField.options[roomTypeField.selectedIndex].value, checkInDate, numNights);
+        let roomCost = getRoomCost(roomInfo, checkInDate, numNights);
         let discountAmount = getDiscount(roomCost, aaaDiscField.checked, seniorDiscField.checked, militaryDiscField.checked);
         let roomSubtotal = roomCost + breakfastCost;
         let taxAmount = roomSubtotal * (taxPercent);
@@ -90,6 +89,35 @@ window.onload = function ()
 /*
 * This function will determine if your selected number of guests is greater
 * than the max occupancy of selected room type
+* @param roomInfo (string) - roomType selected by user on drop down
+* @param numGuests (number) - number of guests
+* @return result (boolean) - true or false that the guests will fit in the room
+*/
+function getRoomInfo(roomType)
+{
+    let priceList = 
+[
+    {name:"queen", guests: 5, lowSeasonRate: 150, highSeasonRate: 250},
+    {name:"king", guests: 2, lowSeasonRate: 150, highSeasonRate: 250},
+    {name:"kingSuite", guests: 4, lowSeasonRate: 190, highSeasonRate: 310},
+    {name:"twoBedSuite", guests: 6, lowSeasonRate: 210, highSeasonRate: 350}
+];
+let obj;
+
+for (let i = 0; i < priceList.length; i++)
+{
+   if (priceList[i].roomType == roomType)
+   {
+      obj = priceList[i];
+      break;
+   }
+}
+return obj;
+}
+
+/*
+* This function will determine if your selected number of guests is greater
+* than the max occupancy of selected room type
 * @param roomType (string) - roomType selected by user on drop down
 * @param numGuests (number) - number of guests
 * @return result (boolean) - true or false that the guests will fit in the room
@@ -97,11 +125,11 @@ window.onload = function ()
 function canRoomHoldCustomer(roomType, numGuests)
 {
     let result = false;
-    for (let i = 0; i < roomPrices.length; i++)
+    for (let i = 0; i < priceList.length; i++)
     {
-        if (roomPrices[i].name == roomType)
+        if (priceList[i].name == roomType)
         {
-            if (roomPrices[i].guests >= numGuests)
+            if (priceList[i].guests >= numGuests)
             {
                 result = true;
                 break;
@@ -122,11 +150,11 @@ function canRoomHoldCustomer(roomType, numGuests)
 function getRoomCost(roomType, checkinDate, numNights)
 {
     let roomCost;
-    for (let i = 0; i < roomPrices.length; i++)
+    for (let i = 0; i < priceList.length; i++)
     {
-        if (roomPrices[i].name == roomType)
+        if (priceList[i].name == roomType)
         {
-            var roomCharge = roomPrices[i].lowSeasonRate;
+            var roomCharge = priceList[i].lowSeasonRate;
             break
         }
     }
