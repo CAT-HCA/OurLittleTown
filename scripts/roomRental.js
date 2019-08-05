@@ -70,7 +70,7 @@ window.onload = function ()
             }
         document.getElementById("checkinDateOutput").innerHTML = checkInDateCalc;
         document.getElementById("checkoutDateOutput").innerHTML = checkOutDate;
-        document.getElementById("roomAndBfastCostOutput").innerHTML = roomCost.toFixed(2);
+        document.getElementById("roomAndBfastCostOutput").innerHTML = roomSubtotal.toFixed(2);
         document.getElementById("taxOutput").innerHTML = taxAmount.toFixed(2);
         document.getElementById("totalCostOutput").innerHTML = totalCost.toFixed(2);
 
