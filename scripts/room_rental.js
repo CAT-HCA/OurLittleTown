@@ -63,7 +63,7 @@ window.onload = function ()
         //Display results
         document.getElementById("checkinDateOutput").innerHTML = checkInDateCalc;
         document.getElementById("checkoutDateOutput").innerHTML = checkOutDate;
-        document.getElementById("roomAndBfastCostOutput").innerHTML = roomCost.toFixed(2);
+        document.getElementById("roomAndBfastCostOutput").innerHTML = roomSubtotal.toFixed(2);
         if (discountAmount > 0){
             document.getElementById("discountSavingsOutput").innerHTML = discountAmount.toFixed(2);
         }
